@@ -343,40 +343,56 @@ console.log( 'Question 08:')
 console.log( 'The sum of all sales is:', sumSales );
 
 
-// // --------------------------------------------------
-// // QUESTION 09
-// // --------------------------------------------------
-// /*
-//   Calculate the sum of *all* 'purchase' transactions.
-//
-//   HINT(S):
-//   - Your solution to 'QUESTION 08' is a good starting point!
-//   - Make sure to include 'price' information from *all* purchases.
-// */
-//
-// var sumPurchases;
-//
-// console.log( 'The sum of all purhcases is:', sumPurchases );
-//
-//
-// // --------------------------------------------------
-// // QUESTION 10
-// // --------------------------------------------------
-// /*
-//   Calculate the company's net profit.
-//
-//   This number will be positive if the sum of the sales is greater than the amount spent on purchases.
-//
-//   Otherwise, this number will be negative.
-//
-//   HINT(S):
-//   - Unlike 'QUESTION 08' and 'QUESTION 09', here we're interested in both 'sale' and 'purchase' transactions.
-// */
-// var netProfit;
-//
-// console.log( 'The net profit is:', netProfit );
-//
-//
+// --------------------------------------------------
+// QUESTION 09
+// --------------------------------------------------
+/*
+  Calculate the sum of *all* 'purchase' transactions.
+
+  HINT(S):
+  - Your solution to 'QUESTION 08' is a good starting point!
+  - Make sure to include 'price' information from *all* purchases.
+*/
+
+var allPurchasesArray = []
+var sumPurchases = 0;
+
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'purchase'){
+      allPurchasesArray.push( transaction );
+  };
+});
+
+allPurchasesArray.forEach(function(purchase){
+  purchase['items'].forEach(function(item){
+    sumPurchases -= item['price'];
+  });
+});
+
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 09:')
+console.log( 'The sum of all purhcases is:', sumPurchases );
+
+
+// --------------------------------------------------
+// QUESTION 10
+// --------------------------------------------------
+/*
+  Calculate the company's net profit.
+
+  This number will be positive if the sum of the sales is greater than the amount spent on purchases.
+
+  Otherwise, this number will be negative.
+
+  HINT(S):
+  - Unlike 'QUESTION 08' and 'QUESTION 09', here we're interested in both 'sale' and 'purchase' transactions.
+*/
+var netProfit;
+
+console.log( 'The net profit is:', netProfit );
+
+
 // // --------------------------------------------------
 // // QUESTION 11
 // // --------------------------------------------------
