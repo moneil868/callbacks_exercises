@@ -287,24 +287,34 @@ console.log( 'Question 06:')
 console.log( 'The unique customers are:', uniqueCustomers );
 
 
-// // --------------------------------------------------
-// // QUESTION 07
-// // --------------------------------------------------
-// /*
-//   Create an array of information about the 'sale' transactions which include 5 or more items.
-//
-//   The array should resemble the following:
-//   [ { name: 'Customer Name', numItems: 5 }, ... ]
-//
-//   HINT(S):
-//   - There may be more than 1 'sale' that includes 5 or more items.
-//   - Individual transactions do not have either `name` or `numItems` properties, we'll have to add them to the output.
-// */
-// var bigSpenders;
-//
-// console.log( 'The "big spenders" are:', bigSpenders );
-//
-//
+// --------------------------------------------------
+// QUESTION 07
+// --------------------------------------------------
+/*
+  Create an array of information about the 'sale' transactions which include 5 or more items.
+
+  The array should resemble the following:
+  [ { name: 'Customer Name', numItems: 5 }, ... ]
+
+  HINT(S):
+  - There may be more than 1 'sale' that includes 5 or more items.
+  - Individual transactions do not have either `name` or `numItems` properties, we'll have to add them to the output.
+*/
+var bigSpenders = [];
+
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'sale'){
+    if (transaction['items'].length >= 5){
+      bigSpenders.push( { 'Customer Name': transaction['customer'], 'numItems': transaction['items'].length} );
+    };
+  };
+});
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 07:')
+console.log( 'The "big spenders" are:', bigSpenders );
+
+
 // // --------------------------------------------------
 // // QUESTION 08
 // // --------------------------------------------------
