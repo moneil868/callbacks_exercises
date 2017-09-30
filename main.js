@@ -315,20 +315,34 @@ console.log( 'Question 07:')
 console.log( 'The "big spenders" are:', bigSpenders );
 
 
-// // --------------------------------------------------
-// // QUESTION 08
-// // --------------------------------------------------
-// /*
-//   Calculate the sum of the *first* 'sale' transaction.
-//
-//   HINT(S):
-//   - Transactions don't have 'prices', but their 'items' do!
-// */
-// var sumSales;
-//
-// console.log( 'The sum of all sales is:', sumSales );
-//
-//
+// --------------------------------------------------
+// QUESTION 08
+// --------------------------------------------------
+/*
+  Calculate the sum of the *first* 'sale' transaction.
+
+  HINT(S):
+  - Transactions don't have 'prices', but their 'items' do!
+*/
+var sumSales = 0;
+var allSalesArray = []
+
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'sale'){
+      allSalesArray.push( transaction );
+  };
+});
+
+allSalesArray[0]['items'].forEach(function(item){
+  sumSales += item['price'];
+});
+
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 08:')
+console.log( 'The sum of all sales is:', sumSales );
+
+
 // // --------------------------------------------------
 // // QUESTION 09
 // // --------------------------------------------------
