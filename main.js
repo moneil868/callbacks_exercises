@@ -205,60 +205,88 @@ transactions.forEach( function(transaction) {
   };
 });
 
-
 console.log( '--------------------------------------------------' )
 console.log( 'Question 03:')
 console.log( 'The total number of cash sales is:', numCashSales );
 
+// --------------------------------------------------
+// QUESTION 04
+// --------------------------------------------------
+/*
+  Calculate the total number of 'credit' 'purchases'.
 
-// // --------------------------------------------------
-// // QUESTION 04
-// // --------------------------------------------------
-// /*
-//   Calculate the total number of 'credit' 'purchases'.
-//
-//   HINT(S):
-//   - Make sure to exclude any 'sales' made by 'credit'!
-// */
-// var numCreditPurchases;
-//
-// console.log( 'The total number of credit purchases is:', numCreditPurchases );
-//
-//
-// // --------------------------------------------------
-// // QUESTION 05
-// // --------------------------------------------------
-// /*
-//   Create an array that includes all of vendors which appear in the transactions data set.
-//   eg. `[ 'vendor one', 'vendor two', ... ]
-//
-//   HINT(S):
-//   - Not all transactions have a 'vendor'!
-//   - The assembled array should be made up of strings, not full `transaction` objects.
-//   - This array is allowed to contain duplicate values.
-// */
-// var uniqueVendors;
-//
-// console.log( 'The unique vendors are:', uniqueVendors );
-//
-//
-// // --------------------------------------------------
-// // QUESTION 06
-// // --------------------------------------------------
-// /*
-//   Create an array that includes all of *unique* customers which appear in the transactions data set.
-//   eg. `[ 'customer one', 'customer two', ... ]
-//
-//   HINT(S):
-//   - Not all transactions have a 'customer'!
-//   - The assembled array should be made up of strings, not full `transaction` objects.
-//   - Make sure that the resulting array *does not* include any duplicates.
-// */
-// var uniqueCustomers;
-//
-// console.log( 'The unique customers are:', uniqueCustomers );
-//
-//
+  HINT(S):
+  - Make sure to exclude any 'sales' made by 'credit'!
+*/
+var numCreditPurchases = 0;
+transactions.forEach( function(transaction) {
+  if (transaction['type'] == 'purchase'){
+    if (transaction['paymentMethod'] == 'credit'){
+      transaction['items'].forEach(function(item){
+        numCreditPurchases -= item['price'];
+      })
+    };
+  };
+});
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 04:')
+console.log( 'The total number of credit purchases is:', numCreditPurchases );
+
+
+// --------------------------------------------------
+// QUESTION 05
+// --------------------------------------------------
+/*
+  Create an array that includes all of vendors which appear in the transactions data set.
+  eg. `[ 'vendor one', 'vendor two', ... ]
+
+  HINT(S):
+  - Not all transactions have a 'vendor'!
+  - The assembled array should be made up of strings, not full `transaction` objects.
+  - This array is allowed to contain duplicate values.
+*/
+var uniqueVendors = [];
+
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'purchase'){
+    uniqueVendors.push(transaction['vendor'])
+  };
+});
+
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 05:')
+console.log( 'The unique vendors are:', uniqueVendors );
+
+
+// --------------------------------------------------
+// QUESTION 06
+// --------------------------------------------------
+/*
+  Create an array that includes all of *unique* customers which appear in the transactions data set.
+  eg. `[ 'customer one', 'customer two', ... ]
+
+  HINT(S):
+  - Not all transactions have a 'customer'!
+  - The assembled array should be made up of strings, not full `transaction` objects.
+  - Make sure that the resulting array *does not* include any duplicates.
+*/
+var uniqueCustomers = [];
+
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'sale'){
+    if ( uniqueCustomers.includes(transaction['customer']) == false) {
+      uniqueCustomers.push(transaction['customer']);
+    };
+  };
+});
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 06:')
+console.log( 'The unique customers are:', uniqueCustomers );
+
+
 // // --------------------------------------------------
 // // QUESTION 07
 // // --------------------------------------------------
