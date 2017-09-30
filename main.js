@@ -185,20 +185,32 @@ console.log( 'Question 02:')
 console.log( 'The total number of purchases is:', numPurchases );
 
 
-// // --------------------------------------------------
-// // QUESTION 03
-// // --------------------------------------------------
-// /*
-//   Calculate the total number of 'cash' 'sales'.
-//
-//   HINT(S):
-//   - Don't forget that 'purchases' can also be made in 'cash'!
-// */
-// var numCashSales;
-//
-// console.log( 'The total number of cash sales is:', numCashSales );
-//
-//
+// --------------------------------------------------
+// QUESTION 03
+// --------------------------------------------------
+/*
+  Calculate the total number of 'cash' 'sales'.
+
+  HINT(S):
+  - Don't forget that 'purchases' can also be made in 'cash'!
+*/
+var numCashSales = 0;
+transactions.forEach( function(transaction) {
+  if (transaction['type'] == 'sale'){
+    if (transaction['paymentMethod'] == 'cash'){
+      transaction['items'].forEach(function(item){
+        numCashSales += item['price'];
+      })
+    };
+  };
+});
+
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 03:')
+console.log( 'The total number of cash sales is:', numCashSales );
+
+
 // // --------------------------------------------------
 // // QUESTION 04
 // // --------------------------------------------------
