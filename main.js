@@ -164,17 +164,26 @@ console.log( 'Question 01:')
 console.log( 'The total number of sales is:', numSales );
 
 
-// // --------------------------------------------------
-// // QUESTION 02
-// // --------------------------------------------------
-// /*
-//   Calculate the total number of 'purchases'.
-// */
-// var numPurchases;
-//
-//
-// console.log( 'The total number of purchases is:', numPurchases );
-//
+// --------------------------------------------------
+// QUESTION 02
+// --------------------------------------------------
+/*
+  Calculate the total number of 'purchases'.
+*/
+var numPurchases = 0;
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'purchase'){
+
+    transaction['items'].forEach(function(item){
+      numPurchases -= item['price'];
+    })
+  };
+});
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 02:')
+console.log( 'The total number of purchases is:', numPurchases );
+
 
 // // --------------------------------------------------
 // // QUESTION 03
