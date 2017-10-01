@@ -134,10 +134,7 @@ console.log( 'The total number of transactions is:', totalTransactions );
 var numSales = 0;
 transactions.forEach(function(transaction){
   if (transaction['type'] == 'sale'){
-
-    transaction['items'].forEach(function(item){
-      numSales += item['price'];
-    })
+    numSales += 1
   };
 });
 
@@ -171,14 +168,11 @@ console.log( 'The total number of sales is:', numSales );
   Calculate the total number of 'purchases'.
 */
 var numPurchases = 0;
-transactions.forEach(function(transaction){
-  if (transaction['type'] == 'purchase'){
-
-    transaction['items'].forEach(function(item){
-      numPurchases -= item['price'];
-    })
-  };
-});
+  transactions.forEach(function(transaction){
+    if (transaction['type'] == 'purchase'){
+      numPurchases += 1
+    };
+  });
 
 console.log( '--------------------------------------------------' )
 console.log( 'Question 02:')
@@ -198,9 +192,7 @@ var numCashSales = 0;
 transactions.forEach( function(transaction) {
   if (transaction['type'] == 'sale'){
     if (transaction['paymentMethod'] == 'cash'){
-      transaction['items'].forEach(function(item){
-        numCashSales += item['price'];
-      })
+        numCashSales += 1;
     };
   };
 });
@@ -222,9 +214,7 @@ var numCreditPurchases = 0;
 transactions.forEach( function(transaction) {
   if (transaction['type'] == 'purchase'){
     if (transaction['paymentMethod'] == 'credit'){
-      transaction['items'].forEach(function(item){
-        numCreditPurchases -= item['price'];
-      })
+        numCreditPurchases += 1;
     };
   };
 });
@@ -388,31 +378,67 @@ console.log( 'The sum of all purhcases is:', sumPurchases );
   HINT(S):
   - Unlike 'QUESTION 08' and 'QUESTION 09', here we're interested in both 'sale' and 'purchase' transactions.
 */
-var netProfit;
 
+allSalesArray.forEach(function(transaction){
+  transaction['items'].forEach(function(item){
+    sumSales += item['price'];
+  });
+});
+
+var netProfit = (sumSales - sumPurchases);
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 10:')
 console.log( 'The net profit is:', netProfit );
 
 
-// // --------------------------------------------------
-// // QUESTION 11
-// // --------------------------------------------------
-// /*
-//   Calculate the most items sold as part of single transaction.
-//
-//   HINTS:
-//   - The result of this calculation should be a number (not an array, object, or other data type).
-// */
-// var mostItems;
-//
-// console.log( 'The most items sold in a single transaction is:', mostItems );
-//
-//
-// // --------------------------------------------------
-// // QUESTION 12
-// // --------------------------------------------------
-// /*
-//   Calculate the sum of the 'purchase' with the fewest items.
-// */
-// var sumOfSmallestPurchase;
-//
-// console.log( 'The sum of the smallest purchase is:', sumOfSmallestPurchase );
+// --------------------------------------------------
+// QUESTION 11
+// --------------------------------------------------
+/*
+  Calculate the most items sold as part of single transaction.
+
+  HINTS:
+  - The result of this calculation should be a number (not an array, object, or other data type).
+*/
+var mostItems = 0;
+
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'sale'){
+    if (transaction['items'].length > mostItems){
+      mostItems = transaction['items'].length
+    };
+  };
+});
+
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 11:')
+console.log( 'The most items sold in a single transaction is:', mostItems );
+
+
+// --------------------------------------------------
+// QUESTION 12
+// --------------------------------------------------
+/*
+  Calculate the sum of the 'purchase' with the fewest items.
+*/
+var sumOfSmallestPurchase = 0;
+var mostItems = 10;
+
+transactions.forEach(function(transaction){
+  if (transaction['type'] == 'purchase'){
+
+    if(transaction['items'].length < mostItems){
+      sumOfSmallestPurchase = 0;
+      mostItems = transaction['items'].length
+        transaction['items'].forEach(function(item){
+          sumOfSmallestPurchase -= item['price']
+        })
+      }
+  };
+});
+
+console.log( '--------------------------------------------------' )
+console.log( 'Question 12:')
+console.log( 'The sum of the smallest purchase is:', sumOfSmallestPurchase );
